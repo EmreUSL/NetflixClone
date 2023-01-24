@@ -7,7 +7,15 @@
 
 import Foundation
 
+protocol UpcomingViewModelProtocol {
+    
+}
 
-final class UpcomingViewModel {
+protocol UpcomingViewModelDelegate {
+    
+}
+
+
+final class UpcomingViewModel: UpcomingViewModelProtocol {
     
 }

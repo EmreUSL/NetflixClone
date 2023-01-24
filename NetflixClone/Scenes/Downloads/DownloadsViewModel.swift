@@ -7,7 +7,15 @@
 
 import Foundation
 
+protocol DownloadsViewModelProtocol {
+    
+}
 
-final class DownloadsViewModel {
+protocol DownloadsViewModelDelegate {
+    
+}
+
+
+final class DownloadsViewModel : DownloadsViewModelProtocol {
     
 }

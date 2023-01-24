@@ -7,7 +7,15 @@
 
 import Foundation
 
+protocol SearchViewModelProtocol {
+    
+}
 
-final class SearchViewModel {
+protocol SearchViewModelDelegate {
+    
+}
+
+
+final class SearchViewModel: SearchViewModelProtocol {
     
 }

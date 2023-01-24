@@ -7,7 +7,15 @@
 
 import Foundation
 
+protocol HomeViewModelProcol {
+    
+}
 
-final class HomeViewModel {
+protocol HomeViewModelDelegate {
+    
+}
+
+
+final class HomeViewModel : HomeViewModelProcol {
     
 }
