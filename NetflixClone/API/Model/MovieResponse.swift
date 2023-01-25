@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TrendingMovieResponse: Codable {
+struct MovieResponse: Codable {
     let results: [Movie]
 }
 
