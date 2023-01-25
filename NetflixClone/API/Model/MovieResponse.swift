@@ -19,4 +19,6 @@ struct Movie: Codable {
     let vote_count: Int?
     let release_date: String?
     let vote_average: Double?
+    let poster_path: String?
 }
+

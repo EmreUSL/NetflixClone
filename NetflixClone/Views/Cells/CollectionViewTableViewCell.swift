@@ -11,6 +11,7 @@ class CollectionViewTableViewCell: UITableViewCell {
 
     static let identifier = "CollectionViewTableViewCell"
     var numberOfItems: Int = 0
+    private var titles: [Movie] = [Movie]()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -18,10 +19,12 @@ class CollectionViewTableViewCell: UITableViewCell {
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self,
-                                forCellWithReuseIdentifier: "cell")
+        collectionView.register(TitleCollectionViewCell.self,
+                                forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         return collectionView
     }()
+    
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,6 +33,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
     
     required init?(coder: NSCoder) {
@@ -45,8 +49,11 @@ class CollectionViewTableViewCell: UITableViewCell {
         contentView.addSubview(collectionView)
     }
     
-    public func configureCell(numberOfItems: Int) {
-        self.numberOfItems = numberOfItems
+    public func configureCell(titles:[Movie]) {
+        self.titles = titles
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
    
@@ -54,12 +61,17 @@ class CollectionViewTableViewCell: UITableViewCell {
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfItems
+        return titles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = UIColor.green
+       guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier,
+                                                           for: indexPath) as? TitleCollectionViewCell else {
+           return UICollectionViewCell()
+       }
+        guard let model = titles[indexPath.row].poster_path else { return  UICollectionViewCell() }
+        cell.configureCell(with: model)
+     
         return cell
     }
     

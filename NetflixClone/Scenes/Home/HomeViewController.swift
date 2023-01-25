@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum Sections: Int{
+    case TrendingMovies = 0
+    case TrendingTv = 1
+    case Popular = 2
+    case Upcoming = 3
+    case TopRated = 4
+}
+
 class HomeViewController: UIViewController {
     
     var viewModel: HomeViewModelProcol = HomeViewModel()
@@ -19,7 +27,9 @@ class HomeViewController: UIViewController {
     }()
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel.getTrendingMovies()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.tableView.reloadData()
+       }
     }
     
     override func viewDidLoad() {
@@ -81,7 +91,29 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-        cell.configureCell(numberOfItems: viewModel.numberOfRow)
+       
+        switch indexPath.section {
+        case Sections.TrendingMovies.rawValue:
+            cell.configureCell(titles: viewModel.getTrendingMovies())
+          
+        case Sections.TrendingTv.rawValue:
+            cell.configureCell(titles: viewModel.getTrendingTv())
+       
+        case Sections.Popular.rawValue:
+            cell.configureCell(titles: viewModel.getPopularMovies())
+        
+        case Sections.Upcoming.rawValue:
+            cell.configureCell(titles: viewModel.getUpcomingMovies())
+  
+        case Sections.TopRated.rawValue:
+            cell.configureCell(titles: viewModel.getTopRated())
+   
+        default:
+            break
+        }
+        
+      
+        
         return cell
         
     }

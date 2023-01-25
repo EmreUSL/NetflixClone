@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 
+
 class TitleCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "TitleCollectionViewCell"
@@ -21,6 +22,12 @@ class TitleCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(posterImageView)
+        prepareForReuse()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        posterImageView.image = nil
     }
 
     required init?(coder: NSCoder) {
@@ -28,8 +35,9 @@ class TitleCollectionViewCell: UICollectionViewCell {
     }
     
     public func configureCell(with model: String) {
-        guard let url = URL(string: model) else { return }
-        posterImageView.sd_setImage(with: url, completed: nil)
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model)") else { return }
+        posterImageView.sd_setImage(with: url , completed: nil)
+       
     }
     
     override func layoutSubviews() {
