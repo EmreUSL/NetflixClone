@@ -10,6 +10,7 @@ import UIKit
 class CollectionViewTableViewCell: UITableViewCell {
 
     static let identifier = "CollectionViewTableViewCell"
+    var numberOfItems: Int = 0
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -44,12 +45,16 @@ class CollectionViewTableViewCell: UITableViewCell {
         contentView.addSubview(collectionView)
     }
     
+    public func configureCell(numberOfItems: Int) {
+        self.numberOfItems = numberOfItems
+    }
+    
    
 }
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return numberOfItems
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

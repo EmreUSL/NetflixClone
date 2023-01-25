@@ -9,12 +9,18 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var viewModel: HomeViewModelProcol = HomeViewModel()
+    
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(CollectionViewTableViewCell.self,
                            forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
         return tableView
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.getTrendingMovies()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,13 +81,28 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-        
+        cell.configureCell(numberOfItems: viewModel.numberOfRow)
         return cell
         
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return viewModel.numberOfSection
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.getSectionTitle(section: section)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = .systemFont(ofSize: 18,weight: .semibold)
+        header.textLabel?.textColor = UIColor.white
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
+        header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20,
+                                         y: header.bounds.origin.y + 20,
+                                         width: 100,
+                                         height: header.bounds.height)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -98,7 +119,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
         
     }
-    
-    
-    
 }
