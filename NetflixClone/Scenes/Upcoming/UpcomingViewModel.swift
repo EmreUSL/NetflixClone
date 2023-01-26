@@ -12,6 +12,7 @@ protocol UpcomingViewModelProtocol {
     func fetchUpcomingMovies()
     var numberOfRows: Int { get }
     func getOriginalName(index: Int) -> String?
+    func configureCell(cell: UpcomingTableViewCell, index: Int)
 }
 
 protocol UpcomingViewModelDelegate {
@@ -20,9 +21,7 @@ protocol UpcomingViewModelDelegate {
 
 
 final class UpcomingViewModel: UpcomingViewModelProtocol {
- 
-    
-   
+  
     var delegate: UpcomingViewModelDelegate?
     
      let service: MovieServiceProtocol = MovieService()
@@ -46,5 +45,11 @@ final class UpcomingViewModel: UpcomingViewModelProtocol {
     
     func getOriginalName(index: Int) -> String?{
         return movies[index].title
+    }
+    
+    func configureCell(cell: UpcomingTableViewCell, index: Int) {
+        let movie = movies[index]
+        cell.configureCell(with: MovieModel(titleName: movie.title ?? "",
+                                            posterURL: movie.poster_path ?? ""))
     }
 }

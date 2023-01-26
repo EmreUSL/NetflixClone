@@ -13,14 +13,14 @@ class UpcomingViewController: UIViewController {
     
     private let tableView: UITableView = {
          let tableView = UITableView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UpcomingTableViewCell.self,
+                           forCellReuseIdentifier: UpcomingTableViewCell.identifier )
         return tableView
     }()
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewModel.fetchUpcomingMovies()
-       
     }
    
     override func viewDidLoad() {
@@ -60,9 +60,18 @@ extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.getOriginalName(index: indexPath.row)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.identifier,
+                                                       for: indexPath) as? UpcomingTableViewCell
+        else {
+            return UITableViewCell()
+        }
+        
+        viewModel.configureCell(cell: cell, index: indexPath.row)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 
 }
