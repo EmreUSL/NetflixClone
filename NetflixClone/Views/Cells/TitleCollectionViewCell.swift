@@ -22,13 +22,9 @@ class TitleCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(posterImageView)
-        prepareForReuse()
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        posterImageView.image = nil
-    }
+
 
     required init?(coder: NSCoder) {
         fatalError()

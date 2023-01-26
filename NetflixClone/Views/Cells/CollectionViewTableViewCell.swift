@@ -10,6 +10,7 @@ import UIKit
 class CollectionViewTableViewCell: UITableViewCell {
 
     static let identifier = "CollectionViewTableViewCell"
+    
     var numberOfItems: Int = 0
     private var titles: [Movie] = [Movie]()
     

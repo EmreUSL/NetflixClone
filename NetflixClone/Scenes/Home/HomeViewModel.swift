@@ -12,11 +12,11 @@ protocol HomeViewModelProcol {
     var numberOfSection: Int { get }
     var numberOfRow: Int { get }
     func getSectionTitle(section: Int) -> String
-    func getTrendingMovies() -> [Movie]
-    func getTrendingTv() -> [Movie]
-    func getPopularMovies() -> [Movie]
-    func getUpcomingMovies() -> [Movie]
-    func getTopRated() -> [Movie]
+    func getTrendingMovies(cell: CollectionViewTableViewCell)
+    func getTrendingTv(cell: CollectionViewTableViewCell)
+    func getPopularMovies(cell: CollectionViewTableViewCell)
+    func getUpcomingMovies(cell: CollectionViewTableViewCell)
+    func getTopRated(cell: CollectionViewTableViewCell)
 }
 
 protocol HomeViewModelDelegate {
@@ -42,65 +42,69 @@ final class HomeViewModel : HomeViewModelProcol {
         return numberOfSection.count
     }
     
-    func getTrendingMovies() -> [Movie]{
+    func getTrendingMovies(cell: CollectionViewTableViewCell) {
          
         service.getTrendingMovies { result in
             switch result {
             case .success(let movies):
                 self.movies = movies
+                cell.configureCell(titles: movies)
             case .failure(let error):
                 print(error)
             }
         }
-        return movies
+  
     }
     
-    func getTrendingTv() -> [Movie] {
+    func getTrendingTv(cell: CollectionViewTableViewCell)  {
         service.getTrendingTvs { result in
             switch result {
             case .success(let movies):
                 self.movies = movies
+                cell.configureCell(titles: movies)
             case .failure(let error):
                 print(error)
             }
         }
-        return movies
     }
     
-    func getPopularMovies() -> [Movie]{
+    func getPopularMovies(cell: CollectionViewTableViewCell) {
         service.getPopularMovies { result in
             switch result {
             case .success(let movies):
                 self.movies = movies
+                cell.configureCell(titles: movies)
             case .failure(let error):
                 print(error)
             }
         }
-        return movies
+      
     }
     
-    func getUpcomingMovies() -> [Movie] {
+    func getUpcomingMovies(cell: CollectionViewTableViewCell)  {
         service.getUpcomingMovies { result in
             switch result {
             case .success(let movies):
                 self.movies = movies
+                cell.configureCell(titles: movies)
             case .failure(let error):
                 print(error)
             }
         }
-        return movies
+       
     }
     
-    func getTopRated() -> [Movie] {
+    func getTopRated(cell: CollectionViewTableViewCell) {
         service.getTopRatedMovies { result in
             switch result {
             case .success(let movies):
                 self.movies = movies
+                cell.configureCell(titles: movies)
             case .failure(let error):
                 print(error)
             }
         }
-        return movies
+      
     }
     
     var numberOfRow: Int {

@@ -94,20 +94,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
        
         switch indexPath.section {
         case Sections.TrendingMovies.rawValue:
-            cell.configureCell(titles: viewModel.getTrendingMovies())
-          
+            viewModel.getTrendingMovies(cell: cell)
         case Sections.TrendingTv.rawValue:
-            cell.configureCell(titles: viewModel.getTrendingTv())
-       
+            viewModel.getTrendingTv(cell: cell)
         case Sections.Popular.rawValue:
-            cell.configureCell(titles: viewModel.getPopularMovies())
-        
+            viewModel.getPopularMovies(cell: cell)
         case Sections.Upcoming.rawValue:
-            cell.configureCell(titles: viewModel.getUpcomingMovies())
-  
+            viewModel.getUpcomingMovies(cell: cell)
         case Sections.TopRated.rawValue:
-            cell.configureCell(titles: viewModel.getTopRated())
-   
+            viewModel.getTopRated(cell: cell)
         default:
             break
         }
