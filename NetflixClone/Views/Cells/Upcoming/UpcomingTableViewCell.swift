@@ -13,6 +13,7 @@ class UpcomingTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
         return image
     }()
     
@@ -57,7 +58,7 @@ class UpcomingTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             upcomingImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             upcomingImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            upcomingImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            upcomingImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
             upcomingImage.widthAnchor.constraint(equalToConstant: 100),
             
             titleLabel.leadingAnchor.constraint(equalTo: upcomingImage.trailingAnchor, constant: 20),

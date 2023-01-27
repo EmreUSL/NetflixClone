@@ -1,5 +1,5 @@
 //
-//  UpcomingViewController.swift
+//  SearchViewController.swift
 //  NetflixClone
 //
 //  Created by emre usul on 24.01.2023.
@@ -7,33 +7,36 @@
 
 import UIKit
 
-class UpcomingViewController: UIViewController {
+class SearchViewController: UIViewController {
     
-    var viewModel: UpcomingViewModelProtocol = UpcomingViewModel()
+    var viewModel: SearchViewModelProtocol = SearchViewModel()
     
     private let tableView: UITableView = {
-         let tableView = UITableView()
-         tableView.register(UpcomingTableViewCell.self,
-                           forCellReuseIdentifier: UpcomingTableViewCell.identifier )
+        let tableView = UITableView()
+        tableView.register(UpcomingTableViewCell.self,
+                           forCellReuseIdentifier: UpcomingTableViewCell.identifier)
         return tableView
     }()
     
+    private let searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: SearchResultViewController())
+        controller.searchBar.placeholder = "Search for Movie or a Tv show"
+        controller.searchBar.searchBarStyle = .minimal
+        return controller
+    }()
+    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        viewModel.fetchUpcomingMovies()
+        viewModel.getDiscoverMovies()
     }
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupIU()
-        addSubview()
-     
+        setupUI()
+        view.addSubview(tableView)
+        
         tableView.delegate = self
         tableView.dataSource = self
         viewModel.delegate = self
-        
-
-
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,20 +44,18 @@ class UpcomingViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    private func addSubview() {
-        view.addSubview(tableView)
-    }
-    
-    private func setupIU() {
-        view.backgroundColor = UIColor.systemBackground
-        title = "Upcoming"
+    private func setupUI() {
+        title = "Search"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
-    }
+        view.backgroundColor = UIColor.systemBackground
+        navigationItem.searchController = searchController
+        navigationController?.navigationBar.tintColor = .white
     
+    }
 }
 
-extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchViewController: UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows
     }
@@ -62,10 +63,7 @@ extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.identifier,
                                                        for: indexPath) as? UpcomingTableViewCell
-        else {
-            return UITableViewCell()
-        }
-        
+        else { return UITableViewCell() }
         viewModel.configureCell(cell: cell, index: indexPath.row)
         return cell
     }
@@ -73,13 +71,16 @@ extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
-
+    
+    
 }
 
-extension UpcomingViewController: UpcomingViewModelDelegate {
-    func reloadData() {
+extension SearchViewController: SearchViewModelDelegate {
+    func reloadUI() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-    }    
+    }
+    
+    
 }

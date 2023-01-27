@@ -20,7 +20,7 @@ protocol HomeViewModelProcol {
 }
 
 protocol HomeViewModelDelegate {
-    
+    func reloadTableview()
 }
 
 
