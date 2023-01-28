@@ -8,10 +8,11 @@
 import UIKit
 
 class SearchResultViewController: UIViewController {
+  
+    private var viewModel: SearchResultViewModelProtocol = SearchResultViewModel()
+    static var query: String?
     
-    private var viewModel: SearchViewModelProtocol = SearchViewModel()
-    
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: UIScreen.main.bounds.width / 3 - 10,
                                  height: 200)
@@ -22,7 +23,13 @@ class SearchResultViewController: UIViewController {
                                 forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
         return collectionView
     }()
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        viewModel.getSearchMovies(query: SearchResultViewController.query ?? "")
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,18 +38,21 @@ class SearchResultViewController: UIViewController {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+        viewModel.delegate = self
+      
     }
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         collectionView.frame = view.bounds
     }
-
+    
 }
 
 extension SearchResultViewController: UICollectionViewDelegate , UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+       return viewModel.numberOfRows
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,9 +60,18 @@ extension SearchResultViewController: UICollectionViewDelegate , UICollectionVie
                                                             for: indexPath) as? TitleCollectionViewCell
         else { return UICollectionViewCell() }
         
-        cell.backgroundColor = .blue
+        viewModel.configureCell(cell: cell, index: indexPath.row)
         return cell
+    }
+}
+
+extension SearchResultViewController: SearchResulstViewModelDelegate {
+    func updateUI() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     
 }
+

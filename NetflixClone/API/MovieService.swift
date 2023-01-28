@@ -18,6 +18,7 @@ protocol MovieServiceProtocol {
     func getPopularMovies(completion: @escaping (Result<[Movie], APIError>) -> Void)
     func getTopRatedMovies(completion: @escaping (Result<[Movie], APIError>) -> Void)
     func getDiscoverMovies(completion: @escaping (Result<[Movie], APIError>) -> Void)
+    func getSearchMovies(with query: String, completion: @escaping (Result<[Movie], APIError>) -> Void)
 }
 
 struct Constants {
@@ -26,6 +27,7 @@ struct Constants {
 }
 
 struct MovieService : MovieServiceProtocol {
+    
     
     func getTrendingMovies(completion: @escaping (Result<[Movie], APIError>) -> Void) {
         
@@ -128,5 +130,26 @@ struct MovieService : MovieServiceProtocol {
         }
         task.resume()
     }
+    
+    func getSearchMovies(with query: String, completion: @escaping (Result<[Movie], APIError>) -> Void) {
+      
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?api_key=\(Constants.apiKey)&query=\(query)")
+        else { return }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+            guard let data = data , error == nil else { return }
+            
+            do {
+                let result = try JSONDecoder().decode(MovieResponse.self, from: data)
+                completion(.success(result.results))
+            } catch {
+                completion(.failure(APIError.JSONDecodeError))
+            }
+        }
+        task.resume()
+    }
 }
+
+
 

@@ -10,7 +10,7 @@ import Foundation
 protocol SearchViewModelProtocol {
     var delegate: SearchViewModelDelegate? { get set }
     var numberOfRows: Int { get }
-    func getDiscoverMovies()
+    func getDiscoverMovies() 
     func configureCell(cell: UpcomingTableViewCell, index: Int)
 }
 

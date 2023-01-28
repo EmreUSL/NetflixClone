@@ -7,10 +7,11 @@
 
 import UIKit
 
+
 class SearchViewController: UIViewController {
     
     var viewModel: SearchViewModelProtocol = SearchViewModel()
-    
+
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(UpcomingTableViewCell.self,
@@ -37,6 +38,7 @@ class SearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         viewModel.delegate = self
+        searchController.searchResultsUpdater = self
     }
     
     override func viewDidLayoutSubviews() {
@@ -81,6 +83,22 @@ extension SearchViewController: SearchViewModelDelegate {
             self.tableView.reloadData()
         }
     }
+}
+
+extension SearchViewController: UISearchResultsUpdating {
     
-    
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        
+        guard let query = searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+            //  query.trimmingCharacters(in: .whitespaces).count >= 3,
+              let resultController = searchController.searchResultsController as? SearchResultViewController
+        else { return }
+        
+        SearchResultViewController.query = query
+        resultController.viewWillAppear(true)
+        
+       
+    }
 }
