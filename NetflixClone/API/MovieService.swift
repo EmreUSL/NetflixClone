@@ -19,11 +19,14 @@ protocol MovieServiceProtocol {
     func getTopRatedMovies(completion: @escaping (Result<[Movie], APIError>) -> Void)
     func getDiscoverMovies(completion: @escaping (Result<[Movie], APIError>) -> Void)
     func getSearchMovies(with query: String, completion: @escaping (Result<[Movie], APIError>) -> Void)
+    func getMovie(query: String, completion: @escaping (Result<VideoElement, APIError>) -> Void)
 }
 
 struct Constants {
     static let apiKey = "c928e02d6dfb0146a55c6dfcd8d06085"
     static let baseURL = "https://api.themoviedb.org"
+    static let youtubeApiKey = "AIzaSyDcMWaNbeCS83kPoX1FE7jxOQsbp5rVqO4"
+    static let youtubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
 }
 
 struct MovieService : MovieServiceProtocol {
@@ -148,6 +151,26 @@ struct MovieService : MovieServiceProtocol {
             }
         }
         task.resume()
+    }
+    
+    func getMovie(query: String, completion: @escaping (Result<VideoElement, APIError>) -> Void) {
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }
+        
+        guard let url = URL(string: "\(Constants.youtubeBaseURL)q=\(query)&key=\(Constants.youtubeApiKey)")
+        else { return }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+            guard let data = data , error == nil else { return }
+            
+            do {
+                let result = try JSONDecoder().decode(YoutubeResultResponse.self, from: data)
+                completion(.success(result.items[0]))
+            } catch {
+               completion(.failure(APIError.JSONDecodeError))
+            }
+        }
+        task.resume()
+
     }
 }
 
