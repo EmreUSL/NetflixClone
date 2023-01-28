@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 protocol HomeViewModelProcol {
+    var delegate: HomeViewModelDelegate? { get set }
     var numberOfSection: Int { get }
     var numberOfRow: Int { get }
     func getSectionTitle(section: Int) -> String
@@ -17,15 +18,17 @@ protocol HomeViewModelProcol {
     func getPopularMovies(cell: CollectionViewTableViewCell)
     func getUpcomingMovies(cell: CollectionViewTableViewCell)
     func getTopRated(cell: CollectionViewTableViewCell)
+    
 }
 
 protocol HomeViewModelDelegate {
-    func reloadTableview()
+    func getDidSelect()
 }
 
 
 final class HomeViewModel : HomeViewModelProcol {
-  
+    var delegate: HomeViewModelDelegate?
+    
     var sectionModel = SectionModel()
     var service: MovieServiceProtocol =  MovieService()
     var movies: [Movie] = []
@@ -106,11 +109,12 @@ final class HomeViewModel : HomeViewModelProcol {
         }
       
     }
-    
+ 
+
     var numberOfRow: Int {
         return movies.count
     }
-    
+
     
     
     

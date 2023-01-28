@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 enum Sections: Int{
     case TrendingMovies = 0
     case TrendingTv = 1
@@ -18,6 +19,8 @@ enum Sections: Int{
 class HomeViewController: UIViewController {
     
     var viewModel: HomeViewModelProcol = HomeViewModel()
+    var cellProtocol = CollectionViewTableViewCell()
+
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -42,6 +45,7 @@ class HomeViewController: UIViewController {
         addSubViews()
         setupColor()
         addHeaderView()
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -73,6 +77,9 @@ class HomeViewController: UIViewController {
         ]
         navigationController?.navigationBar.tintColor = .white
     }
+    
+   
+    
 }
 
 
@@ -92,6 +99,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
        
+        cell.delegate = self
+        
         switch indexPath.section {
         case Sections.TrendingMovies.rawValue:
             viewModel.getTrendingMovies(cell: cell)
@@ -107,7 +116,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             break
         }
         
-      
         
         return cell
         
@@ -144,6 +152,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
-        
+    }
+    
+}
+
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, model: PreviewModel) {
+        DispatchQueue.main.async {
+            let vc = TitlePreviewViewController()
+            vc.configure(with: model)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+       
     }
 }

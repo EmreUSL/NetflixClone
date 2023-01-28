@@ -7,13 +7,21 @@
 
 import UIKit
 
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, model: PreviewModel)
+}
+
+
 class CollectionViewTableViewCell: UITableViewCell {
 
     static let identifier = "CollectionViewTableViewCell"
     
+    weak var delegate:CollectionViewTableViewCellDelegate?
+    
     var numberOfItems: Int = 0
     private var titles: [Movie] = [Movie]()
     
+ 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 140, height: 200)
@@ -34,6 +42,7 @@ class CollectionViewTableViewCell: UITableViewCell {
         
         collectionView.delegate = self
         collectionView.dataSource = self
+
         
     }
     
@@ -72,9 +81,30 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
        }
         guard let model = titles[indexPath.row].poster_path else { return  UICollectionViewCell() }
         cell.configureCell(with: model)
-     
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let service = MovieService()
+        
+        let title = titles[indexPath.row]
+        
+        guard let titleName = title.title ?? title.original_name else { return }
+        
+        service.getMovie(query: titleName + "trailer") { [weak self] result in
+            switch result {
+            case .success(let videoElement):
+                guard let titleOverview = title.overview else { return }
+                guard let strongSelf = self else { return }
+                let vcmodel = PreviewModel(title: titleName, youtubeView: videoElement, titleOverview: titleOverview)
+                self?.delegate?.collectionViewTableViewCellDidTapCell(strongSelf, model: vcmodel)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     
 }
+
+

@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct YoutubeResultResponse: Codable {
     let items: [VideoElement]
 }

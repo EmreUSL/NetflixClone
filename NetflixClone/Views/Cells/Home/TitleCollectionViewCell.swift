@@ -23,8 +23,6 @@ class TitleCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(posterImageView)
     }
-    
-
 
     required init?(coder: NSCoder) {
         fatalError()
