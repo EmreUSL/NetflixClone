@@ -19,13 +19,13 @@ enum Sections: Int{
 class HomeViewController: UIViewController {
     
     var viewModel: HomeViewModelProcol = HomeViewModel()
-    var cellProtocol = CollectionViewTableViewCell()
+    var cellProtocol = HomeTableViewCell()
 
     
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(CollectionViewTableViewCell.self,
-                           forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
+        tableView.register(HomeTableViewCell.self,
+                           forCellReuseIdentifier: HomeTableViewCell.identifier)
         return tableView
     }()
     
@@ -67,11 +67,7 @@ class HomeViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        var image = UIImage(named: "netflixLogo")
-        image = image?.withRenderingMode(.alwaysOriginal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
-        
-        navigationItem.rightBarButtonItems = [
+            navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
             UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
         ]
@@ -93,8 +89,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier,
-                                                       for: indexPath) as? CollectionViewTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier,
+                                                       for: indexPath) as? HomeTableViewCell
         else {
             return UITableViewCell()
         }
@@ -157,7 +153,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension HomeViewController: CollectionViewTableViewCellDelegate {
-    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, model: PreviewModel) {
+    func collectionViewTableViewCellDidTapCell(_ cell: HomeTableViewCell, model: PreviewModel) {
         DispatchQueue.main.async {
             let vc = TitlePreviewViewController()
             vc.configure(with: model)

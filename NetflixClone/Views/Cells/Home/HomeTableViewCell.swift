@@ -8,11 +8,11 @@
 import UIKit
 
 protocol CollectionViewTableViewCellDelegate: AnyObject {
-    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, model: PreviewModel)
+    func collectionViewTableViewCellDidTapCell(_ cell: HomeTableViewCell, model: PreviewModel)
 }
 
 
-class CollectionViewTableViewCell: UITableViewCell {
+class HomeTableViewCell: UITableViewCell {
 
     static let identifier = "CollectionViewTableViewCell"
     
@@ -69,7 +69,7 @@ class CollectionViewTableViewCell: UITableViewCell {
    
 }
 
-extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return titles.count
     }

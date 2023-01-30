@@ -67,16 +67,17 @@ class TitlePreviewViewController: UIViewController {
     
     private func configureConstraints() {
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            webView.heightAnchor.constraint(equalToConstant: 250),
+            webView.heightAnchor.constraint(equalToConstant: 300),
             
             titleLabel.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
             overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
             overviewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            overviewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             downloadButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             downloadButton.topAnchor.constraint(equalTo: overviewLabel.bottomAnchor, constant: 25),

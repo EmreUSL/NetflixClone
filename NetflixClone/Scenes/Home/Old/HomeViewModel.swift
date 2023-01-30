@@ -13,11 +13,11 @@ protocol HomeViewModelProcol {
     var numberOfSection: Int { get }
     var numberOfRow: Int { get }
     func getSectionTitle(section: Int) -> String
-    func getTrendingMovies(cell: CollectionViewTableViewCell)
-    func getTrendingTv(cell: CollectionViewTableViewCell)
-    func getPopularMovies(cell: CollectionViewTableViewCell)
-    func getUpcomingMovies(cell: CollectionViewTableViewCell)
-    func getTopRated(cell: CollectionViewTableViewCell)
+    func getTrendingMovies(cell: HomeTableViewCell)
+    func getTrendingTv(cell: HomeTableViewCell)
+    func getPopularMovies(cell: HomeTableViewCell)
+    func getUpcomingMovies(cell: HomeTableViewCell)
+    func getTopRated(cell: HomeTableViewCell)
     
 }
 
@@ -45,7 +45,7 @@ final class HomeViewModel : HomeViewModelProcol {
         return numberOfSection.count
     }
     
-    func getTrendingMovies(cell: CollectionViewTableViewCell) {
+    func getTrendingMovies(cell: HomeTableViewCell) {
          
         service.getTrendingMovies { result in
             switch result {
@@ -59,7 +59,7 @@ final class HomeViewModel : HomeViewModelProcol {
   
     }
     
-    func getTrendingTv(cell: CollectionViewTableViewCell)  {
+    func getTrendingTv(cell: HomeTableViewCell)  {
         service.getTrendingTvs { result in
             switch result {
             case .success(let movies):
@@ -71,7 +71,7 @@ final class HomeViewModel : HomeViewModelProcol {
         }
     }
     
-    func getPopularMovies(cell: CollectionViewTableViewCell) {
+    func getPopularMovies(cell: HomeTableViewCell) {
         service.getPopularMovies { result in
             switch result {
             case .success(let movies):
@@ -84,7 +84,7 @@ final class HomeViewModel : HomeViewModelProcol {
       
     }
     
-    func getUpcomingMovies(cell: CollectionViewTableViewCell)  {
+    func getUpcomingMovies(cell: HomeTableViewCell)  {
         service.getUpcomingMovies { result in
             switch result {
             case .success(let movies):
@@ -97,7 +97,7 @@ final class HomeViewModel : HomeViewModelProcol {
        
     }
     
-    func getTopRated(cell: CollectionViewTableViewCell) {
+    func getTopRated(cell: HomeTableViewCell) {
         service.getTopRatedMovies { result in
             switch result {
             case .success(let movies):
