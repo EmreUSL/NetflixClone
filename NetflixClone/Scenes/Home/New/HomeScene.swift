@@ -10,7 +10,11 @@ import UIKit
 protocol HomeSceneInterface: AnyObject {
     func configureVC()
     func configureTableView()
+    func reloadUI()
 }
+
+
+//MARK: - HomeScene
 
 final class HomeScene: UIViewController {
     
@@ -24,9 +28,29 @@ final class HomeScene: UIViewController {
         viewModel.viewDidLoad()
     }
     
+    private func willDisplayHeader(view: UIView) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = .systemFont(ofSize: 18,weight: .semibold)
+        header.textLabel?.textColor = UIColor.white
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
+        header.textLabel?.frame = CGRect(x: header.bounds.origin.x + 20,
+                                         y: header.bounds.origin.y + 20,
+                                         width: 100,
+                                         height: header.bounds.height)
+    }
+    
+    private func scrollViewScroll(scrollView: UIScrollView) {
+        let defaultOffset = view.safeAreaInsets.top
+        let offset = scrollView.contentOffset.y + defaultOffset
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+    }
+    
 }
 
+//MARK: - HomeSceneInterface
+
 extension HomeScene: HomeSceneInterface {
+ 
     func configureVC() {
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"),
@@ -54,7 +78,15 @@ extension HomeScene: HomeSceneInterface {
         
         tableView.frame = view.bounds
     }
+    
+    func reloadUI() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
+
+//MARK: - TableViewDelegate , TableViewDataSource
 
 extension HomeScene: UITableViewDelegate , UITableViewDataSource {
     
@@ -66,14 +98,33 @@ extension HomeScene: UITableViewDelegate , UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier,
                                                        for: indexPath) as? HomeTableViewCell
         else { return UITableViewCell()}
+        
+        cell.configureCell(titles: viewModel.getSectionsData(section: indexPath.section))
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        viewModel.numberOfSection
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        viewModel.getSectionTitle(index: section)
+    }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
+    }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        40
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        willDisplayHeader(view: view)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollViewScroll(scrollView: scrollView)
+    }
 }
     

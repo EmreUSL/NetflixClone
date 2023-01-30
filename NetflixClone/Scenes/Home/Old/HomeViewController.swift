@@ -8,7 +8,7 @@
 import UIKit
 
 
-enum Sections: Int{
+enum Section: Int{
     case TrendingMovies = 0
     case TrendingTv = 1
     case Popular = 2
@@ -96,17 +96,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
        
         cell.delegate = self
-        
         switch indexPath.section {
-        case Sections.TrendingMovies.rawValue:
+        case Section.TrendingMovies.rawValue:
             viewModel.getTrendingMovies(cell: cell)
-        case Sections.TrendingTv.rawValue:
+        case Section.TrendingTv.rawValue:
             viewModel.getTrendingTv(cell: cell)
-        case Sections.Popular.rawValue:
+        case Section.Popular.rawValue:
             viewModel.getPopularMovies(cell: cell)
-        case Sections.Upcoming.rawValue:
+        case Section.Upcoming.rawValue:
             viewModel.getUpcomingMovies(cell: cell)
-        case Sections.TopRated.rawValue:
+        case Section.TopRated.rawValue:
             viewModel.getTopRated(cell: cell)
         default:
             break

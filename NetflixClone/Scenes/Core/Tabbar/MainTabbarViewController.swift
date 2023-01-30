@@ -9,7 +9,7 @@ import UIKit
 
 final class MainTabbarViewController: UITabBarController {
     
-    let HomeVC = UINavigationController(rootViewController: HomeViewController())
+    let HomeVC = UINavigationController(rootViewController: HomeScene())
     let UpcomingVC = UINavigationController(rootViewController: UpcomingViewController())
     let SearchVC = UINavigationController(rootViewController: SearchViewController())
     let DownloadsVC = UINavigationController(rootViewController: DownloadsViewController())
