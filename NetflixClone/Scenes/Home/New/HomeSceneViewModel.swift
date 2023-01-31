@@ -25,7 +25,7 @@ protocol HomeSceneViewModelInterface {
 }
 
 final class HomeSceneViewModel {
-    var view: HomeSceneInterface?
+    weak var view: HomeSceneInterface?
     var service: MovieServiceProtocol = MovieService()
     var movies: [Movie] = []
     var tv: [Movie] = []

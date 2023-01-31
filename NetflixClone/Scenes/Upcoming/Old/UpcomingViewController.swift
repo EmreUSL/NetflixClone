@@ -31,9 +31,6 @@ class UpcomingViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         viewModel.delegate = self
-        
-
-
     }
     
     override func viewDidLayoutSubviews() {
