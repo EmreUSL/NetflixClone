@@ -158,6 +158,7 @@ struct MovieService : MovieServiceProtocol {
         
         guard let url = URL(string: "\(Constants.youtubeBaseURL)q=\(query)&key=\(Constants.youtubeApiKey)")
         else { return }
+        print(url)
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
             guard let data = data , error == nil else { return }

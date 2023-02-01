@@ -9,7 +9,6 @@ import Foundation
 
 protocol UpcomingSceneViewModelInterface {
     var view: UpcomingSceneInterface? { get set }
-    func viewDidLoad()
 }
 
 final class UpcomingSceneViewModel {

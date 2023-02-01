@@ -11,6 +11,7 @@ protocol HomeSceneInterface: AnyObject {
     func configureVC()
     func configureTableView()
     func reloadUI()
+    func navigateToDetailScreen(movie: PreviewModel)
 }
 
 
@@ -45,6 +46,9 @@ final class HomeScene: UIViewController {
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
     
+    func getSelectedItem(title: String, overview: String) {
+        viewModel.getDetailTitle(title: title, overview: overview)
+    }
 }
 
 //MARK: - HomeSceneInterface
@@ -65,8 +69,8 @@ extension HomeScene: HomeSceneInterface {
     
     func configureTableView() {
         tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.register(HomeTableViewCell.self,
-                           forCellReuseIdentifier: HomeTableViewCell.identifier)
+        tableView.register(HomeSceneCell.self,
+                           forCellReuseIdentifier: HomeSceneCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -84,6 +88,12 @@ extension HomeScene: HomeSceneInterface {
             self.tableView.reloadData()
         }
     }
+    
+    func navigateToDetailScreen(movie: PreviewModel) {
+            let detailScreen = TitlePreviewViewController(model: movie)
+            self.navigationController?.pushViewController(detailScreen, animated: true)
+        
+    }
 }
 
 //MARK: - TableViewDelegate , TableViewDataSource
@@ -95,11 +105,12 @@ extension HomeScene: UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeTableViewCell.identifier,
-                                                       for: indexPath) as? HomeTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: HomeSceneCell.identifier,
+                                                       for: indexPath) as? HomeSceneCell
         else { return UITableViewCell()}
         
-        cell.configureCell(titles: viewModel.getSectionsData(section: indexPath.section))
+        
+        cell.setCell(movies: viewModel.getSectionsData(section: indexPath.section))
         return cell
     }
     

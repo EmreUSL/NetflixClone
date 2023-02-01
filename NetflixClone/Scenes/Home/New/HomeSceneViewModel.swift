@@ -21,6 +21,7 @@ protocol HomeSceneViewModelInterface {
     func viewDidLoad()
     func getSectionTitle(index: Int) -> String
     func getSectionsData(section: Int) -> [Movie]
+    func getDetailTitle(title: String , overview: String)
     
 }
 
@@ -35,8 +36,7 @@ final class HomeSceneViewModel {
 }
 
 extension HomeSceneViewModel: HomeSceneViewModelInterface {
-    
-    
+ 
     func viewDidLoad() {
         view?.configureVC()
         view?.configureTableView()
@@ -135,4 +135,20 @@ extension HomeSceneViewModel: HomeSceneViewModelInterface {
         }
         return movie
     }
+    
+    func getDetailTitle(title: String , overview: String) {
+        service.getMovie(query: title + "trailer") {  result in
+            switch result {
+            case .success(let videoElement):
+                let detailModel = PreviewModel(title: title,
+                                               youtubeView: videoElement,
+                                               titleOverview: overview)
+                print(detailModel)
+                self.view?.navigateToDetailScreen(movie: detailModel)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }

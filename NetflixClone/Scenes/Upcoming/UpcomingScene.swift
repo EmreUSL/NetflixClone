@@ -38,7 +38,7 @@ extension UpcomingScene: UpcomingSceneInterface {
     }
     
     func configureTableView() {
-        tableView = UITableView(frame: .zero, style: .grouped)
+        tableView = UITableView(frame: .zero)
         tableView.frame = view.bounds
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,8 +47,6 @@ extension UpcomingScene: UpcomingSceneInterface {
                            forCellReuseIdentifier: UpcomingTableViewCell.identifier)
 
         view.addSubview(tableView)
-      
-
     }
     
     func reloadUI() {

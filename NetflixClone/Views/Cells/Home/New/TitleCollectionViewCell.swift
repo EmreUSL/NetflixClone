@@ -31,7 +31,6 @@ class TitleCollectionViewCell: UICollectionViewCell {
     public func configureCell(with model: String) {
         guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model)") else { return }
         posterImageView.sd_setImage(with: url , completed: nil)
-       
     }
     
     override func layoutSubviews() {

@@ -22,7 +22,7 @@ class HomeTableViewCell: UITableViewCell {
     private var titles: [Movie] = [Movie]()
     
  
-    private let collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 140, height: 200)
         layout.scrollDirection = .horizontal
