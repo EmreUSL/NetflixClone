@@ -22,6 +22,7 @@ protocol HomeSceneViewModelInterface {
     func getSectionTitle(index: Int) -> String
     func getSectionsData(section: Int) -> [Movie]
     func getDetailTitle(title: String , overview: String)
+
     
 }
 
@@ -150,5 +151,7 @@ extension HomeSceneViewModel: HomeSceneViewModelInterface {
             }
         }
     }
+    
+    
     
 }

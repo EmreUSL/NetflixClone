@@ -20,6 +20,7 @@ protocol HomeSceneInterface: AnyObject {
 final class HomeScene: UIViewController {
     
     private let viewModel = HomeSceneViewModel()
+    
     private var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -27,7 +28,9 @@ final class HomeScene: UIViewController {
     
         viewModel.view = self
         viewModel.viewDidLoad()
+        
     }
+    
     
     private func willDisplayHeader(view: UIView) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
@@ -90,9 +93,10 @@ extension HomeScene: HomeSceneInterface {
     }
     
     func navigateToDetailScreen(movie: PreviewModel) {
+        DispatchQueue.main.async {
             let detailScreen = TitlePreviewViewController(model: movie)
             self.navigationController?.pushViewController(detailScreen, animated: true)
-        
+        }
     }
 }
 
@@ -109,8 +113,10 @@ extension HomeScene: UITableViewDelegate , UITableViewDataSource {
                                                        for: indexPath) as? HomeSceneCell
         else { return UITableViewCell()}
         
-        
+  
         cell.setCell(movies: viewModel.getSectionsData(section: indexPath.section))
+        cell.delegate = self
+        
         return cell
     }
     
@@ -139,3 +145,9 @@ extension HomeScene: UITableViewDelegate , UITableViewDataSource {
     }
 }
     
+extension HomeScene: HomeSceneCellInterface {
+    func getItem(title: String, overview: String) {
+        viewModel.getDetailTitle(title: title, overview: overview)
+    }
+    
+}

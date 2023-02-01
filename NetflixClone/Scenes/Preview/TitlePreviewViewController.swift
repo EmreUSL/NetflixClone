@@ -15,6 +15,9 @@ class TitlePreviewViewController: UIViewController {
     init(model: PreviewModel) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
+        titleLabel.text = model.title
+        overviewLabel.text = model.titleOverview
+        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -66,15 +69,18 @@ class TitlePreviewViewController: UIViewController {
         configureConstraints()
     }
     
-    func configure(with model: PreviewModel) {
-        titleLabel.text = model.title
-        overviewLabel.text = model.titleOverview
-        
+    func configure() {
         guard let url = URL(string: "https://www.youtube.com/embed/\(model.youtubeView.id.videoId)")
         else { return }
+        let request = URLRequest(url: url)
         
-        webView.load(URLRequest(url: url))
+        DispatchQueue.main.async {
+          
+            self.webView.load(request)
+        }
+        
     }
+        
     
     private func configureConstraints() {
         NSLayoutConstraint.activate([

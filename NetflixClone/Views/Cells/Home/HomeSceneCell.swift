@@ -7,7 +7,13 @@
 
 import UIKit
 
-class HomeSceneCell: UITableViewCell {
+protocol HomeSceneCellInterface: AnyObject {
+    func getItem(title: String, overview: String)
+}
+
+final class HomeSceneCell: UITableViewCell {
+    
+    var delegate: HomeSceneCellInterface?
 
     static let identifier = "HomeSceneCell"
     
@@ -74,8 +80,9 @@ extension HomeSceneCell: UICollectionViewDelegate , UICollectionViewDataSource {
         let movieTitle = movies[indexPath.item]
         guard let titleName = movieTitle.title ?? movieTitle.original_name else { return }
         guard let overView = movieTitle.overview else { return }
-        let HomeScene = HomeScene()
-        HomeScene.getSelectedItem(title: titleName, overview: overView)
+        //let HomeScene = HomeScene()
+        //HomeScene.getSelectedItem(title: titleName, overview: overView)
+        delegate?.getItem(title: titleName, overview: overView)
         
     }
     

@@ -14,8 +14,10 @@ protocol UpcomingSceneInterface: AnyObject {
 }
 
 final class UpcomingScene: UIViewController {
-    
+ 
+
     private let viewModel = UpcomingSceneViewModel()
+    
     private var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -23,6 +25,7 @@ final class UpcomingScene: UIViewController {
 
         viewModel.view = self
         viewModel.viewDidLoad()
+ 
     }
     
 
