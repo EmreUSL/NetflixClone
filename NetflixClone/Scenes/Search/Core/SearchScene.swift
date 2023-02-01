@@ -56,7 +56,7 @@ extension SearchScene: SearchSceneInterface {
     }
     
     func configureSearchController() {
-        searchController = UISearchController(searchResultsController: SearchResultViewController())
+        searchController = UISearchController(searchResultsController: SearchResultScene())
         searchController.searchBar.placeholder = "Search for Movie or a TV show"
         searchController.searchBar.searchBarStyle = .minimal
         searchController.searchResultsUpdater = self
@@ -93,7 +93,13 @@ extension SearchScene: UITableViewDelegate , UITableViewDataSource {
 
 extension SearchScene: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        guard let query = searchBar.text,
+              !query.trimmingCharacters(in: .whitespaces).isEmpty,
+              let resultController = searchController.searchResultsController as? SearchResultScene else { return }
         
+        SearchResultScene.query = query
+        resultController.viewWillAppear(true)
     }
     
     

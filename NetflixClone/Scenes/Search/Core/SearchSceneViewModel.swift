@@ -23,9 +23,10 @@ final class SearchSceneViewModel {
 extension SearchSceneViewModel: SearchSceneViewModelInterface {
 
     func viewDidload() {
+        view?.configureSearchController()
         view?.configureUI()
         view?.configureTableView()
-        view?.configureSearchController()
+   
     }
     
     func viewWillAppear() {
@@ -37,7 +38,7 @@ extension SearchSceneViewModel: SearchSceneViewModelInterface {
             switch result {
             case .success(let discover):
                 self.discoverMovie = discover
-                self.view?.configureUI()
+                self.view?.reloadUI()
             case .failure(let error):
                 print(error)
             }

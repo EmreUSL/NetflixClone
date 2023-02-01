@@ -11,7 +11,7 @@ final class MainTabbarViewController: UITabBarController {
     
     let HomeVC = UINavigationController(rootViewController: HomeScene())
     let UpcomingVC = UINavigationController(rootViewController: UpcomingScene())
-    let SearchVC = UINavigationController(rootViewController: SearchViewController())
+    let SearchVC = UINavigationController(rootViewController: SearchScene())
     let DownloadsVC = UINavigationController(rootViewController: DownloadsViewController())
 
     override func viewDidLoad() {
