@@ -22,8 +22,6 @@ protocol HomeSceneViewModelInterface {
     func getSectionTitle(index: Int) -> String
     func getSectionsData(section: Int) -> [Movie]
     func getDetailTitle(title: String , overview: String)
-
-    
 }
 
 final class HomeSceneViewModel {
@@ -37,8 +35,11 @@ final class HomeSceneViewModel {
 }
 
 extension HomeSceneViewModel: HomeSceneViewModelInterface {
+   
+    
  
     func viewDidLoad() {
+
         view?.configureVC()
         view?.configureTableView()
         getTrendingMovies()

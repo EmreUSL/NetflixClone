@@ -80,8 +80,6 @@ extension HomeSceneCell: UICollectionViewDelegate , UICollectionViewDataSource {
         let movieTitle = movies[indexPath.item]
         guard let titleName = movieTitle.title ?? movieTitle.original_name else { return }
         guard let overView = movieTitle.overview else { return }
-        //let HomeScene = HomeScene()
-        //HomeScene.getSelectedItem(title: titleName, overview: overView)
         delegate?.getItem(title: titleName, overview: overView)
         
     }

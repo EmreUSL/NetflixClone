@@ -75,6 +75,11 @@ class HomeHeaderView: UIView {
         addSubview(listButton)
     }
     
+    public func configure(with model: MovieModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.posterURL)") else { return }
+        homeImageView.sd_setImage(with: url,completed: nil)
+    }
+    
     private func applyConstraints() {
         
         NSLayoutConstraint.activate([

@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class TitlePreviewViewController: UIViewController {
+class MoviePreviewScene: UIViewController {
     
     private let model: PreviewModel
     
@@ -17,7 +17,6 @@ class TitlePreviewViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         titleLabel.text = model.title
         overviewLabel.text = model.titleOverview
-        configure()
     }
     
     required init?(coder: NSCoder) {
@@ -34,7 +33,6 @@ class TitlePreviewViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .bold)
-        label.text = "Harry Potter"
         return label
     }()
     
@@ -43,7 +41,6 @@ class TitlePreviewViewController: UIViewController {
         label.font = .systemFont(ofSize: 18, weight: .regular)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.text = "Did you bring the knife"
         return label
     }()
     
@@ -67,6 +64,7 @@ class TitlePreviewViewController: UIViewController {
         view.addSubview(downloadButton)
         
         configureConstraints()
+        configure()
     }
     
     func configure() {
@@ -78,7 +76,6 @@ class TitlePreviewViewController: UIViewController {
           
             self.webView.load(request)
         }
-        
     }
         
     
