@@ -54,7 +54,7 @@ class MoviePreviewScene: UIViewController {
         button.layer.masksToBounds = true
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.systemBackground
@@ -62,9 +62,10 @@ class MoviePreviewScene: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(overviewLabel)
         view.addSubview(downloadButton)
-        
+     
         configureConstraints()
         configure()
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
     }
     
     func configure() {
@@ -81,7 +82,7 @@ class MoviePreviewScene: UIViewController {
     
     private func configureConstraints() {
         NSLayoutConstraint.activate([
-            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            webView.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             webView.heightAnchor.constraint(equalToConstant: 300),
@@ -99,6 +100,7 @@ class MoviePreviewScene: UIViewController {
             downloadButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
     
 
 }

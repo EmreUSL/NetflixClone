@@ -121,7 +121,7 @@ extension HomeScene: UITableViewDelegate , UITableViewDataSource {
   
         cell.setCell(movies: viewModel.getSectionsData(section: indexPath.section))
         cell.delegate = self
-        
+        cell.selectionStyle = .none
         return cell
     }
     

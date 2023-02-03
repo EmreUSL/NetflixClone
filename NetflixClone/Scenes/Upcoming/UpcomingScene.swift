@@ -74,6 +74,7 @@ extension UpcomingScene: UITableViewDelegate, UITableViewDataSource {
         let movieModel = MovieModel(titleName: movie.title ?? "",
                                     posterURL: movie.poster_path ?? "")
         cell.configureCell(with: movieModel)
+        cell.selectionStyle = .none
         return cell
     }
     

@@ -72,6 +72,7 @@ extension SearchResultScene: UICollectionViewDelegate, UICollectionViewDataSourc
         
         let data = viewModel.getConfigureData(index: indexPath.item)
         cell.configureCell(with: data)
+        cell.selectedBackgroundView = .none
         return cell
     }
     

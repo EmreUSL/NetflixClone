@@ -82,6 +82,7 @@ extension SearchScene: UITableViewDelegate , UITableViewDataSource {
         
         let data = viewModel.getCellData(index: indexPath.row)
         cell.configureCell(with: data)
+        cell.selectionStyle = .none
         return cell
     }
     

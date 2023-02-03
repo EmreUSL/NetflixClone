@@ -68,6 +68,7 @@ extension DownloadScene: UITableViewDelegate, UITableViewDataSource {
        
         let model = viewModel.movieTitle[indexPath.row]
         cell.configureCell(with: MovieModel(titleName: model.title ?? model.original_name ?? "", posterURL: model.poster_path ?? ""))
+        cell.selectionStyle = .none
         return cell
     }
     
