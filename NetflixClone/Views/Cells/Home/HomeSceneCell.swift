@@ -14,6 +14,7 @@ protocol HomeSceneCellInterface: AnyObject {
 final class HomeSceneCell: UITableViewCell {
     
     var delegate: HomeSceneCellInterface?
+    var dataManager = DataPersistanceManager()
 
     static let identifier = "HomeSceneCell"
     
@@ -57,6 +58,17 @@ final class HomeSceneCell: UITableViewCell {
         }
     }
     
+    private func downloadMovieTitleAt(indexPath: IndexPath) {
+        dataManager.downloadMovieWith(model: movies[indexPath.row]) { result in
+            switch result {
+            case .success():
+                print("downloaded to Database")
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 extension HomeSceneCell: UICollectionViewDelegate , UICollectionViewDataSource {
@@ -83,6 +95,23 @@ extension HomeSceneCell: UICollectionViewDelegate , UICollectionViewDataSource {
         delegate?.getItem(title: titleName, overview: overView)
         
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let config = UIContextMenuConfiguration(identifier: nil,
+                                                previewProvider: nil) {[weak self] _ in
+            let downloadAction = UIAction(title: "Download", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
+                self?.downloadMovieTitleAt(indexPath: indexPath)
+            }
+            let cancelAction = UIAction(title: "Cancel", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: .destructive, state: .off) { _ in
+                
+            }
+            return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction,cancelAction])
+        }
+        
+        return config
+    }
+    
+    
     
     
 }

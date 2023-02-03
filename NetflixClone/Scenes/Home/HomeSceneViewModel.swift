@@ -38,8 +38,6 @@ final class HomeSceneViewModel {
 
 extension HomeSceneViewModel: HomeSceneViewModelInterface {
    
-    
- 
     func viewDidLoad() {
         getRandomMovie()
         view?.configureVC()

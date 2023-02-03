@@ -25,7 +25,7 @@ protocol MovieServiceProtocol {
 struct Constants {
     static let apiKey = "c928e02d6dfb0146a55c6dfcd8d06085"
     static let baseURL = "https://api.themoviedb.org"
-    static let youtubeApiKey = "AIzaSyAkr3RZy4r8frKYhbAni4mboOV_je8Fcoo"//"AIzaSyDcMWaNbeCS83kPoX1FE7jxOQsbp5rVqO4"
+    static let youtubeApiKey = "AIzaSyAkr3RZy4r8frKYhbAni4mboOV_je8Fcoo"
     static let youtubeBaseURL = "https://youtube.googleapis.com/youtube/v3/search?"
 }
 
