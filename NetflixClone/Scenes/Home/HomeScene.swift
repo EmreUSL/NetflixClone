@@ -12,7 +12,6 @@ protocol HomeSceneInterface: AnyObject {
     func configureTableView()
     func reloadUI()
     func navigateToDetailScreen(movie: PreviewModel)
-    func reloadHeader()
 }
 
 
@@ -59,12 +58,6 @@ final class HomeScene: UIViewController {
 
 extension HomeScene: HomeSceneInterface {
     
-    func reloadHeader() {
-        DispatchQueue.main.async {
-            self.tableView.layoutSubviews()
-        }
-    }
-
     func configureVC() {
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"),
@@ -87,9 +80,9 @@ extension HomeScene: HomeSceneInterface {
         let headerView = HomeHeaderView(frame: CGRect(x: 0, y: 0,
                                                       width: view.bounds.width,
                                                       height: 450))
-        let random = viewModel.movies.randomElement()
-      //  headerView.configure(with: MovieModel(titleName: random?.title ?? "", posterURL: random?.poster_path ?? ""))
-       tableView.tableHeaderView = headerView
+        let random = viewModel.randomMovie
+        headerView.configure(with: MovieModel(titleName: random?.title ?? random?.original_name ?? "", posterURL: random?.poster_path ?? ""))
+        tableView.tableHeaderView = headerView
         view.addSubview(tableView)
         
         tableView.frame = view.bounds
@@ -98,6 +91,7 @@ extension HomeScene: HomeSceneInterface {
     func reloadUI() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.configureTableView()
         }
     }
     

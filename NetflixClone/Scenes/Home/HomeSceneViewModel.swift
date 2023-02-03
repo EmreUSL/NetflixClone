@@ -22,6 +22,7 @@ protocol HomeSceneViewModelInterface {
     func getSectionTitle(index: Int) -> String
     func getSectionsData(section: Int) -> [Movie]
     func getDetailTitle(title: String , overview: String)
+    func getRandomMovie()
 }
 
 final class HomeSceneViewModel {
@@ -32,6 +33,7 @@ final class HomeSceneViewModel {
     var popular: [Movie] = []
     var upcoming: [Movie] = []
     var topRated: [Movie] = []
+    var randomMovie: Movie?
 }
 
 extension HomeSceneViewModel: HomeSceneViewModelInterface {
@@ -39,7 +41,7 @@ extension HomeSceneViewModel: HomeSceneViewModelInterface {
     
  
     func viewDidLoad() {
-
+        getRandomMovie()
         view?.configureVC()
         view?.configureTableView()
         getTrendingMovies()
@@ -149,6 +151,18 @@ extension HomeSceneViewModel: HomeSceneViewModelInterface {
                 self.view?.navigateToDetailScreen(movie: detailModel)
             case .failure(let error):
                 print(error)
+            }
+        }
+    }
+    
+    func getRandomMovie(){
+        service.getTrendingMovies { result in
+            switch result {
+            case .success(let movies):
+                self.randomMovie = movies.randomElement()
+                self.view?.reloadUI()
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
