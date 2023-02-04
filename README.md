@@ -38,8 +38,8 @@ This is a Netflix Clone App for iOS
 
 # App Preview
 
+https://user-images.githubusercontent.com/109242794/216787589-ee058bfe-9df8-4711-9f46-ec9cd834e144.mp4
 
-https://user-images.githubusercontent.com/109242794/216787260-a2019e58-5f5f-477b-bfa7-46a05cab0760.mp4
 
 
 
