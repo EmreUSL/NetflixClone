@@ -11,6 +11,8 @@ protocol HomeSceneCellInterface: AnyObject {
     func getItem(title: String, overview: String)
 }
 
+
+
 final class HomeSceneCell: UITableViewCell {
     
     var delegate: HomeSceneCellInterface?
@@ -45,8 +47,8 @@ final class HomeSceneCell: UITableViewCell {
                                           collectionViewLayout: layout)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(TitleCollectionViewCell.self,
-                                forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
+        collectionView.register(MovieCollectionViewCell.self,
+                                forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
         
         contentView.addSubview(collectionView)
     }
@@ -62,7 +64,7 @@ final class HomeSceneCell: UITableViewCell {
         dataManager.downloadMovieWith(model: movies[indexPath.row]) { result in
             switch result {
             case .success():
-                print("downloaded to Database")
+                NotificationCenter.default.post(name: NSNotification.Name("downloaded"), object: nil)
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -77,8 +79,8 @@ extension HomeSceneCell: UICollectionViewDelegate , UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier,
-                                                            for: indexPath) as? TitleCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier,
+                                                            for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
         
         guard let model = movies[indexPath.row].poster_path else { return UICollectionViewCell()}

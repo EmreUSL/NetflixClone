@@ -12,6 +12,7 @@ protocol SearchSceneViewModelInterface {
     func viewDidload()
     func viewWillAppear()
     func getCellData(index: Int) -> MovieModel
+    func getDetailTitle(title: String, overview: String)
 }
 
 final class SearchSceneViewModel {
@@ -52,6 +53,17 @@ extension SearchSceneViewModel: SearchSceneViewModelInterface {
         return data
     }
     
-    
-    
+    func getDetailTitle(title: String , overview: String) {
+        service.getMovie(query: title + "trailer") {  result in
+            switch result {
+            case .success(let videoElement):
+                let detailModel = PreviewModel(title: title,
+                                               youtubeView: videoElement,
+                                               titleOverview: overview)
+                self.view?.navigateToDetailScreen(movie: detailModel)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

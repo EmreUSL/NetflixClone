@@ -12,6 +12,7 @@ protocol SearchSceneInterface: AnyObject {
      func configureTableView()
      func configureSearchController()
      func reloadUI()
+     func navigateToDetailScreen(movie: PreviewModel)
 }
 
 final class SearchScene: UIViewController {
@@ -35,6 +36,7 @@ final class SearchScene: UIViewController {
 
 extension SearchScene: SearchSceneInterface {
 
+
     func configureUI() {
         title = "Search"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -46,8 +48,8 @@ extension SearchScene: SearchSceneInterface {
     
     func configureTableView() {
         tableView = UITableView(frame: .zero)
-        tableView.register(UpcomingTableViewCell.self,
-                           forCellReuseIdentifier: UpcomingTableViewCell.identifier)
+        tableView.register(TableViewCell.self,
+                           forCellReuseIdentifier: TableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
@@ -68,6 +70,12 @@ extension SearchScene: SearchSceneInterface {
         }
     }
     
+    func navigateToDetailScreen(movie: PreviewModel) {
+        DispatchQueue.main.async {
+            let detailScreen = MoviePreviewScene(model: movie)
+            self.navigationController?.pushViewController(detailScreen, animated: true)
+        }
+    }
 }
 
 extension SearchScene: UITableViewDelegate , UITableViewDataSource {
@@ -76,8 +84,8 @@ extension SearchScene: UITableViewDelegate , UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.identifier,
-                                                       for: indexPath) as? UpcomingTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier,
+                                                       for: indexPath) as? TableViewCell
         else { return UITableViewCell() }
         
         let data = viewModel.getCellData(index: indexPath.row)
@@ -88,6 +96,11 @@ extension SearchScene: UITableViewDelegate , UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let title = viewModel.discoverMovie[indexPath.row]
+        viewModel.getDetailTitle(title: title.title ?? title.original_name ?? "", overview: title.overview ?? "")
     }
     
 }
@@ -102,6 +115,4 @@ extension SearchScene: UISearchResultsUpdating {
         SearchResultScene.query = query
         resultController.viewWillAppear(true)
     }
-    
-    
 }

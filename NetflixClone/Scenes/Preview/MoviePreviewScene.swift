@@ -100,7 +100,4 @@ class MoviePreviewScene: UIViewController {
             downloadButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
-    
-    
-
 }

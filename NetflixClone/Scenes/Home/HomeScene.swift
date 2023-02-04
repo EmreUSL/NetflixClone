@@ -22,15 +22,14 @@ final class HomeScene: UIViewController {
     private let viewModel = HomeSceneViewModel()
     
     private var tableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         viewModel.view = self
         viewModel.viewDidLoad()
         
     }
-    
     
     private func willDisplayHeader(view: UIView) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
@@ -59,6 +58,7 @@ final class HomeScene: UIViewController {
 extension HomeScene: HomeSceneInterface {
     
     func configureVC() {
+        
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"),
                             style: .done, target: self, action: nil),
@@ -68,7 +68,6 @@ extension HomeScene: HomeSceneInterface {
         navigationController?.navigationBar.tintColor = .white
         view.backgroundColor = UIColor.red
     }
-    
     
     func configureTableView() {
         tableView = UITableView(frame: .zero, style: .grouped)
@@ -101,8 +100,6 @@ extension HomeScene: HomeSceneInterface {
             self.navigationController?.pushViewController(detailScreen, animated: true)
         }
     }
-    
-
 }
 
 //MARK: - TableViewDelegate , TableViewDataSource
@@ -118,7 +115,7 @@ extension HomeScene: UITableViewDelegate , UITableViewDataSource {
                                                        for: indexPath) as? HomeSceneCell
         else { return UITableViewCell()}
         
-  
+        
         cell.setCell(movies: viewModel.getSectionsData(section: indexPath.section))
         cell.delegate = self
         cell.selectionStyle = .none
@@ -148,14 +145,10 @@ extension HomeScene: UITableViewDelegate , UITableViewDataSource {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         scrollViewScroll(scrollView: scrollView)
     }
-    
 }
-    
+
 extension HomeScene: HomeSceneCellInterface {
     func getItem(title: String, overview: String) {
         viewModel.getDetailTitle(title: title, overview: overview)
     }
-    
-    
-    
 }

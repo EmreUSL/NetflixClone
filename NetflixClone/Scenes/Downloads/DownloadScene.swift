@@ -11,6 +11,7 @@ protocol DownloadSceneInterface: AnyObject {
     func configureUI()
     func configureTableView()
     func reloadUI()
+    func navigateToDetailScreen(movie: PreviewModel)
 }
 
 final class DownloadScene: UIViewController {
@@ -24,12 +25,10 @@ final class DownloadScene: UIViewController {
         viewModel.view = self
         viewModel.viewDidLoad()
     }
-
 }
 
 extension DownloadScene: DownloadSceneInterface {
-
-    
+  
     func configureUI() {
         view.backgroundColor = .systemBackground
         title = "Download"
@@ -42,8 +41,8 @@ extension DownloadScene: DownloadSceneInterface {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.frame = view.bounds
-        tableView.register(UpcomingTableViewCell.self,
-                           forCellReuseIdentifier: UpcomingTableViewCell.identifier)
+        tableView.register(TableViewCell.self,
+                           forCellReuseIdentifier: TableViewCell.identifier)
         view.addSubview(tableView)
     }
     
@@ -53,17 +52,22 @@ extension DownloadScene: DownloadSceneInterface {
         }
     }
     
+    func navigateToDetailScreen(movie: PreviewModel) {
+        DispatchQueue.main.async {
+            let detailScreen = MoviePreviewScene(model: movie)
+            self.navigationController?.pushViewController(detailScreen, animated: true)
+        }
+    }
 }
 
 extension DownloadScene: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(viewModel.movieTitle.count)
         return viewModel.movieTitle.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.identifier,
-                                                       for: indexPath) as? UpcomingTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier,
+                                                       for: indexPath) as? TableViewCell
         else { return UITableViewCell() }
        
         let model = viewModel.movieTitle[indexPath.row]
@@ -86,4 +90,9 @@ extension DownloadScene: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let title = viewModel.movieTitle[indexPath.row]
+        viewModel.getDetailTitle(title: title.title ?? title.original_name ?? "", overview: title.overview ?? "")
+    }
 }
+

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UpcomingTableViewCell: UITableViewCell {
+class TableViewCell: UITableViewCell {
     
     private let upcomingImage: UIImageView = {
         let image = UIImageView()

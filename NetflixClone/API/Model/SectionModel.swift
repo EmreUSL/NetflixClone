@@ -14,5 +14,4 @@ struct SectionModel {
                                     "Popular",
                                     "Upcomıng Movıes",
                                     "Top Rated", ]
-    
 }

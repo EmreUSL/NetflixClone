@@ -9,6 +9,7 @@ import Foundation
 
 protocol UpcomingSceneViewModelInterface {
     var view: UpcomingSceneInterface? { get set }
+    func getDetailTitle(title: String, overview: String)
 }
 
 final class UpcomingSceneViewModel {
@@ -37,5 +38,18 @@ extension UpcomingSceneViewModel: UpcomingSceneViewModelInterface {
         }
     }
     
-    
+    func getDetailTitle(title: String , overview: String) {
+        service.getMovie(query: title + "trailer") {  result in
+            switch result {
+            case .success(let videoElement):
+                let detailModel = PreviewModel(title: title,
+                                               youtubeView: videoElement,
+                                               titleOverview: overview)
+                
+                self.view?.navigateToDetailScreen(movie: detailModel)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

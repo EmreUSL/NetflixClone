@@ -103,8 +103,4 @@ class HomeHeaderView: UIView {
         ]
         gradientLayer.frame = bounds
     }
-    
-   
-    
-    
 }

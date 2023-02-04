@@ -145,7 +145,6 @@ extension HomeSceneViewModel: HomeSceneViewModelInterface {
                 let detailModel = PreviewModel(title: title,
                                                youtubeView: videoElement,
                                                titleOverview: overview)
-                print(detailModel)
                 self.view?.navigateToDetailScreen(movie: detailModel)
             case .failure(let error):
                 print(error)
@@ -164,7 +163,4 @@ extension HomeSceneViewModel: HomeSceneViewModelInterface {
             }
         }
     }
-    
-    
-    
 }

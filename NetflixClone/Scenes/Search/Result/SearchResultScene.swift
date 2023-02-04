@@ -35,6 +35,7 @@ class SearchResultScene: UIViewController {
 }
 
 extension SearchResultScene: SearchResultSceneInterface {
+  
 
     func configureCollectionView() {
         let layout = UICollectionViewFlowLayout()
@@ -43,8 +44,8 @@ extension SearchResultScene: SearchResultSceneInterface {
         layout.minimumInteritemSpacing = 0
         collectionView = UICollectionView(frame: .zero,
                                           collectionViewLayout: layout)
-        collectionView.register(TitleCollectionViewCell.self,
-                                forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
+        collectionView.register(MovieCollectionViewCell.self,
+                                forCellWithReuseIdentifier: MovieCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.frame = view.bounds
@@ -56,8 +57,6 @@ extension SearchResultScene: SearchResultSceneInterface {
             self.collectionView.reloadData()
         }
     }
-    
-    
 }
 
 extension SearchResultScene: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -66,8 +65,8 @@ extension SearchResultScene: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier,
-                                                            for: indexPath) as? TitleCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCollectionViewCell.identifier,
+                                                            for: indexPath) as? MovieCollectionViewCell
         else { return UICollectionViewCell() }
         
         let data = viewModel.getConfigureData(index: indexPath.item)
@@ -75,6 +74,4 @@ extension SearchResultScene: UICollectionViewDelegate, UICollectionViewDataSourc
         cell.selectedBackgroundView = .none
         return cell
     }
-    
-    
 }

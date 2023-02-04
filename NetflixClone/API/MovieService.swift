@@ -171,7 +171,6 @@ struct MovieService : MovieServiceProtocol {
             }
         }
         task.resume()
-
     }
 }
 

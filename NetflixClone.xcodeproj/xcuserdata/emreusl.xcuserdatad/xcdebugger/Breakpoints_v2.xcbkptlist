@@ -2369,7 +2369,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0387B004-3DEB-47A9-996B-6FF82177F669"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetflixClone/Scenes/Preview/MoviePreviewScene.swift"
@@ -2385,7 +2385,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "37D5AF1F-F54A-4E76-99DB-E26D1C1498E8"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetflixClone/Scenes/Preview/MoviePreviewScene.swift"
@@ -2433,7 +2433,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "43D1A58A-C17C-4411-92D8-A3FF08334E91"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetflixClone/Scenes/Preview/MoviePreviewScene.swift"
@@ -2449,7 +2449,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "88C28910-70B0-42E3-BFED-4E857C703DEA"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetflixClone/Scenes/Preview/MoviePreviewScene.swift"
@@ -2644,7 +2644,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "F3591310-BB8B-4108-8FDD-050607372021"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetflixClone/Scenes/Preview/MoviePreviewScene.swift"
@@ -2921,8 +2921,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "configureTableView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2937,8 +2937,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "getSelectedItem(title:overview:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2953,8 +2953,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "configureTableView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2969,8 +2969,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "configureTableView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2985,8 +2985,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
             landmarkName = "configureTableView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3001,8 +3001,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
             landmarkName = "configureTableView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3033,8 +3033,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "getRandomMovie()"
             landmarkType = "7">
             <Locations>
@@ -3081,6 +3081,22 @@
             filePath = "NetflixClone/Scenes/Home/HomeSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "getRandomMovie()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4132855A-D5D2-4B81-BD79-E93435F56FDE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetflixClone/Scenes/Home/HomeSceneViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"
             endingLineNumber = "158"
             landmarkName = "getRandomMovie()"
@@ -3090,7 +3106,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "4132855A-D5D2-4B81-BD79-E93435F56FDE"
+            uuid = "7165AA9D-1DB0-4B0F-A989-EAAB4BC940AD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -3106,7 +3122,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7165AA9D-1DB0-4B0F-A989-EAAB4BC940AD"
+            uuid = "C7638676-EF6F-4E6A-9080-1B09ED450375"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -3122,22 +3138,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C7638676-EF6F-4E6A-9080-1B09ED450375"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NetflixClone/Scenes/Home/HomeSceneViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "getRandomMovie()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "EBDCB7EF-2328-4616-910E-C0148197C48F"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -3145,8 +3145,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
             landmarkName = "reloadUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3161,8 +3161,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "reloadUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3177,8 +3177,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "fetchDownloadData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3193,8 +3193,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "reloadUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3209,8 +3209,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3225,8 +3225,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3241,8 +3241,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3257,8 +3257,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "HomeScene"
             landmarkType = "21">
          </BreakpointContent>
@@ -3273,8 +3273,8 @@
             filePath = "NetflixClone/Scenes/Home/HomeScene.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "reloadUI()"
             landmarkType = "7">
             <Locations>
@@ -3321,8 +3321,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "fetchDownloadData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3337,8 +3337,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "fetchDownloadData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3353,8 +3353,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
             landmarkName = "fetchDownloadData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3369,25 +3369,9 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "fetchDownloadData()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5D870569-34FE-4C13-B554-15945376136F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "NetflixClone/Scenes/Downloads/DownloadScene.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "tableView(_:numberOfRowsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3401,8 +3385,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3417,8 +3401,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3433,8 +3417,8 @@
             filePath = "NetflixClone/Scenes/Downloads/DownloadSceneViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

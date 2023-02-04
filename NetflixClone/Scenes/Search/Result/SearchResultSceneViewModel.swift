@@ -22,7 +22,7 @@ final class SearchResultSceneViewModel {
 }
 
 extension SearchResultSceneViewModel: SearchResultSceneViewModelInterface {
-  
+    
     func viewDidLoad() {
         view?.configureCollectionView()
     }
@@ -47,9 +47,4 @@ extension SearchResultSceneViewModel: SearchResultSceneViewModelInterface {
         let title = movies[index].poster_path
         return title ?? ""
     }
-    
-
-    
-    
-    
 }
