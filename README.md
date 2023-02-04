@@ -36,7 +36,10 @@ This is a Netflix Clone App for iOS
 
 <img src="https://user-images.githubusercontent.com/109242794/216786442-89810297-0662-4a90-95e8-2cbad147daac.png" alt="Simulator Screen Shot - iPhone 14 Pro - 2022-11-05 at 22 59 26" width="414" height="896"/>
 
-#App Preview
+# App Preview
+
+
+https://user-images.githubusercontent.com/109242794/216787260-a2019e58-5f5f-477b-bfa7-46a05cab0760.mp4
 
 
 
